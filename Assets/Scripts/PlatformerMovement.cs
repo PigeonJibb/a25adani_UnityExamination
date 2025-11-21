@@ -105,10 +105,13 @@ public class PlatformerMovement : MonoBehaviour
         // Is our groundCheckCollider touching the groundLayer? If so, return the value "true"
         if (groundCheckCollider.IsTouchingLayers(groundLayer))
         {
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isGrounded", true);
             return true;
         }
         else
         {
+            animator.SetBool("isGrounded", false);
             return false;
         }
     }
@@ -138,6 +141,7 @@ public class PlatformerMovement : MonoBehaviour
             else
             {
                 // you can add a gravity multiplier here... but how?
+                animator.SetBool("isFalling", true);
                 velocity.y += Physics2D.gravity.y * Time.deltaTime;
             }
         }
