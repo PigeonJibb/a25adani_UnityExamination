@@ -94,6 +94,10 @@ public class PlatformerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
         
         // Write movement animation code here. (Suggestion: send your current velocity into the Animator for both the x- and y-axis.)
+        if (velocity.x < 0.01f && velocity.x > -0.01f)
+            animator.SetBool("isRunning", false);
+        else
+            animator.SetBool("isRunning", true);
     }
 
     private bool IsGrounded()
@@ -156,6 +160,7 @@ public class PlatformerMovement : MonoBehaviour
         else
         {
             moveInput = Vector2.zero;
+            animator.SetBool("isRunning", false);
         }
     }
 
